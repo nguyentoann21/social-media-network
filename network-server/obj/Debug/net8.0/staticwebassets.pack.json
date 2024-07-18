@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\network\\network-server\\wwwroot\\avt\\bentley.jpg",
+      "PackagePath": "staticwebassets\\avt\\bentley.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.network-server.props",
+      "PackagePath": "build\\network-server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.network-server.props",
+      "PackagePath": "buildMultiTargeting\\network-server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.network-server.props",
+      "PackagePath": "buildTransitive\\network-server.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.network-server.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

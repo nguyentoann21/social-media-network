@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "mu4uAokbdt/ZeV/wGmKK9zT537WFDYmUyg0USATM7zw=",
+  "Source": "network-server",
+  "BasePath": "_content/network-server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "network-server\\wwwroot",
+      "Source": "network-server",
+      "ContentRoot": "E:\\network\\network-server\\wwwroot\\",
+      "BasePath": "_content/network-server",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "E:\\network\\network-server\\wwwroot\\avt\\bentley.jpg",
+      "SourceId": "network-server",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\network\\network-server\\wwwroot\\",
+      "BasePath": "_content/network-server",
+      "RelativePath": "avt/bentley.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\avt\\bentley.jpg"
+    }
+  ]
+}
