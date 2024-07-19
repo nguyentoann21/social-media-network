@@ -20,9 +20,51 @@ namespace network_server.Services.s_user
             _configuration = configuration;
         }
 
+        public async Task AssignRole(User user, string roleName)
+        {
+            var role = await _context.Roles.FirstOrDefaultAsync(r => r.RoleName == roleName);
+
+            if(role == null)
+            {
+                throw new ApplicationException("Role not found");
+            }
+
+            var existingUser = await _context.Users
+                .Include(u => u.UserRoles)
+                .FirstOrDefaultAsync(u => u.UserId == user.UserId);
+
+            if (existingUser == null)
+            {
+                throw new ApplicationException("User not found");
+            }
+
+            _context.UserRoles.RemoveRange(existingUser.UserRoles);
+
+            var userRole = new UserRole
+            {
+                UserId = user.UserId,
+                RoleId = role.RoleId
+            };
+
+            _context.UserRoles.Add(userRole);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<string> GetUserRoleAsync(Guid userId)
+        {
+            var user = await _context.Users.Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+                .FirstOrDefaultAsync(u => u.UserId == userId);
+
+            return user?.UserRoles.FirstOrDefault().Role.RoleName;
+        }
+
         public async Task<string> LoginAsync(LoginDto loginDto)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginDto.UsernameOrEmailAddress || u.EmailAddress == loginDto.UsernameOrEmailAddress);
+            var user = await _context.Users
+                .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+                .FirstOrDefaultAsync(u => u.Username == loginDto.UsernameOrEmailAddress || u.EmailAddress == loginDto.UsernameOrEmailAddress);
 
             if (user == null) 
             {
@@ -36,6 +78,8 @@ namespace network_server.Services.s_user
                 throw new ApplicationException("Invalid credentials");
             }
 
+            var role = user.UserRoles.FirstOrDefault()?.Role.RoleName;
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),
@@ -47,7 +91,8 @@ namespace network_server.Services.s_user
                 new Claim("PhoneNumber", user.PhoneNumber ?? ""), // Đảm bảo PhoneNumber không null
                 new Claim("Address", user.Address ?? ""), // Đảm bảo Address không null
                 new Claim("Gender", user.Gender ?? ""), // Đảm bảo Gender không null
-                new Claim("AvatarUrl", user.AvatarUrl ?? "") // Đảm bảo AvatarUrl không null
+                new Claim("AvatarUrl", user.AvatarUrl ?? ""), // Đảm bảo AvatarUrl không null
+                new Claim(ClaimTypes.Role, role)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
@@ -65,7 +110,7 @@ namespace network_server.Services.s_user
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public async Task<UserDto> RegisterAsync(RegisterDto registerDto)
+        public async Task<UserDto> RegisterAsync(RegisterDto registerDto, string roleName = "User")
         {
             var user = await _context.Users.AnyAsync(u => u.Username == registerDto.Username || u.EmailAddress == registerDto.EmailAddress);
             
@@ -76,7 +121,8 @@ namespace network_server.Services.s_user
 
             //save file upload
             string avatarFile = null;
-            if(registerDto.Avatar != null)
+            string randomNumber = new Random().Next(10000000, 99999999).ToString();
+            if (registerDto.Avatar != null)
             {
                 var storageFolder = Path.Combine("wwwroot", "avt");
                 Directory.CreateDirectory(storageFolder);
@@ -86,6 +132,8 @@ namespace network_server.Services.s_user
                 {
                     await registerDto.Avatar.CopyToAsync(fileStream);
                 }
+
+                avatarFile = Path.Combine("avt", $"{randomNumber}_{registerDto.Avatar.FileName}");
             }
 
             var registerUser = new User
@@ -104,6 +152,10 @@ namespace network_server.Services.s_user
 
             _context.Users.Add(registerUser);
             await _context.SaveChangesAsync();
+
+            // Assign role after saving user
+            await AssignRole(registerUser, roleName);
+
             return new UserDto
             {
                 UserId = registerUser.UserId,
@@ -116,6 +168,11 @@ namespace network_server.Services.s_user
                 Address = registerUser.Address,
                 Gender = registerUser.Gender
             };
+        }
+
+        public Task<UserDto> RegisterUserAsync(RegisterDto registerDto)
+        {
+            return RegisterAsync(registerDto, "User");
         }
     }
 }

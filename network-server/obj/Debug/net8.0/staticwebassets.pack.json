@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets\\avt\\bentley.jpg"
     },
     {
+      "Id": "E:\\network\\network-server\\wwwroot\\avt\\bentley.png",
+      "PackagePath": "staticwebassets\\avt\\bentley.png"
+    },
+    {
+      "Id": "E:\\network\\network-server\\wwwroot\\avt\\bugatti-logo.jpg",
+      "PackagePath": "staticwebassets\\avt\\bugatti-logo.jpg"
+    },
+    {
+      "Id": "E:\\network\\network-server\\wwwroot\\avt\\porsche-logo.jpg",
+      "PackagePath": "staticwebassets\\avt\\porsche-logo.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.network-server.props",
       "PackagePath": "build\\network-server.props"
     },

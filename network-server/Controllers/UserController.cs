@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using network_server.DTOs;
 using network_server.Services.s_user;
@@ -21,10 +21,25 @@ namespace network_server.Controllers
         {
             try
             {
-                var user = await _userService.RegisterAsync(registerDto);
+                var user = await _userService.RegisterUserAsync(registerDto);
                 return Ok(user);
             } 
             catch(ApplicationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Authorize(Policy = "Manager")]
+        [HttpPost("create-user")]
+        public async Task<IActionResult> RegisterWithRole([FromForm] RegisterDto registerDto, [FromQuery] string roleName)
+        {
+            try
+            {
+                var user = await _userService.RegisterAsync(registerDto, roleName);
+                return Ok(user);
+            }
+            catch (ApplicationException ex)
             {
                 return BadRequest(ex.Message);
             }

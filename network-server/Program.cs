@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using network_server.DataAccess;
 using network_server.Services.s_user;
 using System.Text;
@@ -19,12 +20,46 @@ namespace network_server
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
 
-            //start coding
+            /*** start coding ***/
+
+            //Swagger
+            builder.Services.AddSwaggerGen(swg =>
+            {
+                swg.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+
+                //JWT Bearer Authentication in Swagger
+                swg.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Bearer Authentication",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                swg.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+            });
+
+
+            // Configure database context
             builder.Services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            // Configure JWT Authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -41,10 +76,18 @@ namespace network_server
                     };
                 });
 
-            builder.Services.AddAuthorization();
+            // Configure Authorization Policies
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Manager", policy => policy.RequireRole("Manager"));
+                options.AddPolicy("Employee", policy => policy.RequireRole("Employee"));
+                options.AddPolicy("User", policy => policy.RequireRole("User"));
+            });
+
+            // Add scoped services
             builder.Services.AddScoped<IUserService, UserService>();
 
-            //end coding
+            /*** end coding ***/
 
             var app = builder.Build();
 
@@ -57,12 +100,16 @@ namespace network_server
 
             app.UseHttpsRedirection();
 
-            //add use authentication
-            app.UseAuthentication();
-
-            //add use static file to use the file upload form user 
+            /* *** 
+             * Use static files to serve user-uploaded files
+             * Use a static file before using authentication and authorization 
+             * to make sure the static file has a higher priority 
+             * than using authen and author
+             * ***/
             app.UseStaticFiles();
 
+            // Use authentication and authorization
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

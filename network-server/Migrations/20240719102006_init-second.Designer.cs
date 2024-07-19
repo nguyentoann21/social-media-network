@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using network_server.DataAccess;
 
@@ -11,9 +12,11 @@ using network_server.DataAccess;
 namespace network_server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240719102006_init-second")]
+    partial class initsecond
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,17 +42,17 @@ namespace network_server.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = new Guid("cb61de30-fe97-4b6d-b136-8a66e160b36c"),
-                            RoleName = "Manager"
+                            RoleId = new Guid("db5f1018-1962-469b-95e9-577b1f219a29"),
+                            RoleName = "Admin"
                         },
                         new
                         {
-                            RoleId = new Guid("56da879e-005a-471f-a7d8-1a7b8801000d"),
+                            RoleId = new Guid("fc3a8566-98fb-4057-bdf6-ee700595f162"),
                             RoleName = "Employee"
                         },
                         new
                         {
-                            RoleId = new Guid("e226b5c5-5bfe-4b16-9c7e-e11a0b2f9fa4"),
+                            RoleId = new Guid("bb5b1b23-791d-4a74-86b7-a1f3568c58d2"),
                             RoleName = "User"
                         });
                 });

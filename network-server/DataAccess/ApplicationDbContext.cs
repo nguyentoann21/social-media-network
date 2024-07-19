@@ -25,6 +25,12 @@ namespace network_server.DataAccess
                 .HasOne(ur => ur.Role)
                 .WithMany(ur => ur.UserRoles)
                 .HasForeignKey(ur => ur.RoleId);
+
+            //seed data for role
+            modelBuilder.Entity<Role>().HasData(
+                new Role { RoleId = Guid.NewGuid(), RoleName = "Manager" },
+                new Role { RoleId = Guid.NewGuid(), RoleName = "Employee" },
+                new Role { RoleId = Guid.NewGuid(), RoleName = "User" });
         }
     }
 }

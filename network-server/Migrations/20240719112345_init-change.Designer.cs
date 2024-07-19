@@ -12,8 +12,8 @@ using network_server.DataAccess;
 namespace network_server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240718112509_first")]
-    partial class first
+    [Migration("20240719112345_init-change")]
+    partial class initchange
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,23 @@ namespace network_server.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = new Guid("cb61de30-fe97-4b6d-b136-8a66e160b36c"),
+                            RoleName = "Manager"
+                        },
+                        new
+                        {
+                            RoleId = new Guid("56da879e-005a-471f-a7d8-1a7b8801000d"),
+                            RoleName = "Employee"
+                        },
+                        new
+                        {
+                            RoleId = new Guid("e226b5c5-5bfe-4b16-9c7e-e11a0b2f9fa4"),
+                            RoleName = "User"
+                        });
                 });
 
             modelBuilder.Entity("network_server.Models.User", b =>
