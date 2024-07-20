@@ -10,5 +10,8 @@ namespace network_server.Services.s_user
         Task<string> LoginAsync(LoginDto loginDto);
         Task<string> GetUserRoleAsync(Guid userId);
         Task AssignRole(User user, string roleName);
+        Task<UserProfileDto> GetUserProfileAsync(Guid userId);
+        Task UpdateProfileAsync(Guid userId, UpdateProfileDto updateProfile);
+        Task UpdatePasswordAsync(Guid userId, UpdatePasswordDto updatePassword);
     }
 }

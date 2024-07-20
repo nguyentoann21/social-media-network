@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tmcSdzEYxkojsJf5+fifjGtEYF00ayh2B6qAItL9qb8=",
+  "Hash": "xr3XUiV6Ce7impiYfSBtSa/sDs4Zkje6OPGCzyBjGns=",
   "Source": "network-server",
   "BasePath": "_content/network-server",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "E:\\network\\network-server\\wwwroot\\avt\\bentley.jpg",
+      "Identity": "E:\\network\\network-server\\wwwroot\\avt\\31674e54-0c0b-49d2-ab51-e2bd4274dfd3_bugatti-logo.jpg",
       "SourceId": "network-server",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\network\\network-server\\wwwroot\\",
       "BasePath": "_content/network-server",
-      "RelativePath": "avt/bentley.jpg",
+      "RelativePath": "avt/31674e54-0c0b-49d2-ab51-e2bd4274dfd3_bugatti-logo.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\avt\\bentley.jpg"
+      "OriginalItemSpec": "wwwroot\\avt\\31674e54-0c0b-49d2-ab51-e2bd4274dfd3_bugatti-logo.jpg"
     },
     {
-      "Identity": "E:\\network\\network-server\\wwwroot\\avt\\bentley.png",
+      "Identity": "E:\\network\\network-server\\wwwroot\\avt\\default-avatar.png",
       "SourceId": "network-server",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\network\\network-server\\wwwroot\\",
       "BasePath": "_content/network-server",
-      "RelativePath": "avt/bentley.png",
+      "RelativePath": "avt/default-avatar.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,45 +52,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\avt\\bentley.png"
-    },
-    {
-      "Identity": "E:\\network\\network-server\\wwwroot\\avt\\bugatti-logo.jpg",
-      "SourceId": "network-server",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\network\\network-server\\wwwroot\\",
-      "BasePath": "_content/network-server",
-      "RelativePath": "avt/bugatti-logo.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\avt\\bugatti-logo.jpg"
-    },
-    {
-      "Identity": "E:\\network\\network-server\\wwwroot\\avt\\porsche-logo.jpg",
-      "SourceId": "network-server",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\network\\network-server\\wwwroot\\",
-      "BasePath": "_content/network-server",
-      "RelativePath": "avt/porsche-logo.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\avt\\porsche-logo.jpg"
+      "OriginalItemSpec": "wwwroot\\avt\\default-avatar.png"
     }
   ]
 }

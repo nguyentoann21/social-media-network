@@ -2,7 +2,7 @@
 {
     public class LoginDto
     {
-        public string UsernameOrEmailAddress { get; set; }
-        public string Password { get; set; }
+        public string UsernameOrEmailAddress { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }

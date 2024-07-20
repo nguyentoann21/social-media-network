@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace network_server.Migrations
 {
     /// <inheritdoc />
-    public partial class initfirst : Migration
+    public partial class InitDb_First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,9 +74,9 @@ namespace network_server.Migrations
                 columns: new[] { "RoleId", "RoleName" },
                 values: new object[,]
                 {
-                    { new Guid("21daedac-965a-439f-b2c5-49aded0d5564"), "User" },
-                    { new Guid("233b6c61-677c-4c2d-9db2-c5ab5bc6580f"), "Employee" },
-                    { new Guid("5b9855e6-4cf9-4db6-8b2b-900a718329d7"), "Admin" }
+                    { new Guid("a9a6ab13-2109-43f7-b479-21c7de5814ae"), "User" },
+                    { new Guid("f02f5253-9dbb-45ba-b687-ae75458127d7"), "Employee" },
+                    { new Guid("fffd31f0-371f-48ae-81db-0b592b90c93d"), "Manager" }
                 });
 
             migrationBuilder.CreateIndex(

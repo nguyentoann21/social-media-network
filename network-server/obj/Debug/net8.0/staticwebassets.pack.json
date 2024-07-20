@@ -1,20 +1,12 @@
 {
   "Files": [
     {
-      "Id": "E:\\network\\network-server\\wwwroot\\avt\\bentley.jpg",
-      "PackagePath": "staticwebassets\\avt\\bentley.jpg"
+      "Id": "E:\\network\\network-server\\wwwroot\\avt\\31674e54-0c0b-49d2-ab51-e2bd4274dfd3_bugatti-logo.jpg",
+      "PackagePath": "staticwebassets\\avt\\31674e54-0c0b-49d2-ab51-e2bd4274dfd3_bugatti-logo.jpg"
     },
     {
-      "Id": "E:\\network\\network-server\\wwwroot\\avt\\bentley.png",
-      "PackagePath": "staticwebassets\\avt\\bentley.png"
-    },
-    {
-      "Id": "E:\\network\\network-server\\wwwroot\\avt\\bugatti-logo.jpg",
-      "PackagePath": "staticwebassets\\avt\\bugatti-logo.jpg"
-    },
-    {
-      "Id": "E:\\network\\network-server\\wwwroot\\avt\\porsche-logo.jpg",
-      "PackagePath": "staticwebassets\\avt\\porsche-logo.jpg"
+      "Id": "E:\\network\\network-server\\wwwroot\\avt\\default-avatar.png",
+      "PackagePath": "staticwebassets\\avt\\default-avatar.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.network-server.props",
