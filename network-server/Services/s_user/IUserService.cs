@@ -13,5 +13,16 @@ namespace network_server.Services.s_user
         Task<UserProfileDto> GetUserProfileAsync(Guid userId);
         Task UpdateProfileAsync(Guid userId, UpdateProfileDto updateProfile);
         Task UpdatePasswordAsync(Guid userId, UpdatePasswordDto updatePassword);
+
+
+
+        /* ***
+         * 
+         * Unchecked
+         * 
+         * *** */
+
+        Task RequestResetPasswordAsync(string emailAddressOrPhoneNumber);
+        Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
     }
 }

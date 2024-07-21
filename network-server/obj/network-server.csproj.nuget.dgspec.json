@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.7.1.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.7, )"
@@ -68,6 +72,10 @@
               "target": "Package",
               "version": "[1.21.0, )"
             },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.29.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -75,6 +83,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Twilio": {
+              "target": "Package",
+              "version": "[7.2.2, )"
             }
           },
           "imports": [

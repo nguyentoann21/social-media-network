@@ -175,5 +175,45 @@ namespace network_server.Controllers
                 return Unauthorized(ex.Message);
             }
         }
+
+
+        /* ***
+         * 
+         * Unchecked
+         * 
+         * *** */
+        [HttpPost("request-password-reset")]
+        public async Task<IActionResult> RequestPasswordReset([FromBody] string emailAddressOrPhoneNumber)
+        {
+            try
+            {
+                await _userService.RequestResetPasswordAsync(emailAddressOrPhoneNumber);
+                return Ok("A reset code has been sent to your email address or phone number");
+            }
+            catch (ApplicationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        /* ***
+         * 
+         * Unchecked
+         * 
+         * *** */
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
+        {
+            try
+            {
+                await _userService.ResetPasswordAsync(resetPasswordDto);
+                return Ok("Your password has been reset");
+            }
+            catch (ApplicationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

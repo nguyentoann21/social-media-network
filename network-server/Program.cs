@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using network_server.DataAccess;
 using network_server.Services.s_user;
+using network_server.Settings;
 using System.Text;
 
 namespace network_server
@@ -86,6 +87,28 @@ namespace network_server
 
             // Add scoped services
             builder.Services.AddScoped<IUserService, UserService>();
+
+
+            //Add transient services
+            builder.Services.AddTransient<IEmailSender, EmailSender>();
+            builder.Services.AddTransient<ISmsSender, SmsSender>();
+
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+            // Override password with environment variable if it exists
+            var emailSettings = builder.Configuration.GetSection("EmailSettings").Get<EmailSettings>();
+            if (emailSettings != null)
+            {
+                emailSettings.Password = Environment.GetEnvironmentVariable("SMTP_PASSWORD") ?? emailSettings.Password;
+            }
+
+            // Configure Twilio Settings from environment variables
+            builder.Services.Configure<TwilioSettings>(options =>
+            {
+                options.AccountSid = Environment.GetEnvironmentVariable("ACCOUNTSID") ?? string.Empty;
+                options.AuthToken = Environment.GetEnvironmentVariable("AUTHTOKEN") ?? string.Empty;
+                options.FromNumber = Environment.GetEnvironmentVariable("FROMNUMBER") ?? string.Empty;
+            });
 
             /*** end coding ***/
 

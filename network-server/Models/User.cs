@@ -17,5 +17,13 @@ namespace network_server.Models
         public string Address { get; set; } = string.Empty;
         public string Gender { get; set; } = string.Empty;
         public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
+
+
+        /* ***
+         * 
+         * Unchecked
+         * 
+         * *** */
+        public ICollection<ResetPasswordToken> ResetPasswordTokens { get; set; } = new HashSet<ResetPasswordToken>();
     }
 }

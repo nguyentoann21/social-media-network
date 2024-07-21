@@ -6,6 +6,7 @@ namespace network_server.Models
     {
         [Key]
         public Guid RoleId { get; set; }
+        [Required]
         public string RoleName { get; set; } = string.Empty;
         public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
     }

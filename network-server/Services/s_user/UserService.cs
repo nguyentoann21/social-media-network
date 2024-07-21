@@ -13,11 +13,16 @@ namespace network_server.Services.s_user
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IEmailSender _emailSender;
+        private readonly ISmsSender _smsSender;
 
-        public UserService(ApplicationDbContext context, IConfiguration configuration)
+
+        public UserService(ApplicationDbContext context, IConfiguration configuration, IEmailSender emailSender, ISmsSender smsSender)
         {
             _context = context;
             _configuration = configuration;
+            _emailSender = emailSender;
+            _smsSender = smsSender;
         }
 
         public async Task AssignRole(User user, string roleName)
@@ -274,6 +279,68 @@ namespace network_server.Services.s_user
                 user.AvatarUrl = avatarUrl;
             }
 
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
+        /* ***
+         * 
+         * Unchecked
+         * 
+         * ***/
+        
+        private async Task<string> GenerateResetPasswordTokenAsync(User user)
+        {
+            var token = new ResetPasswordToken
+            {
+                TokenId = Guid.NewGuid(),
+                UserId = user.UserId,
+                PasswordToken = new Random().Next(100000, 999999).ToString(),
+                ExpirationTime = DateTime.UtcNow.AddMinutes(5)
+            };
+
+            _context.ResetPasswordTokens.Add(token);
+            await _context.SaveChangesAsync();
+
+            return token.PasswordToken;
+        }
+
+        public async Task RequestResetPasswordAsync(string emailAddressOrPhoneNumber)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == emailAddressOrPhoneNumber || u.PhoneNumber == emailAddressOrPhoneNumber);
+
+            if (user == null)
+            {
+                throw new ApplicationException("Email address or phone number not found");
+            }
+
+            var token = await GenerateResetPasswordTokenAsync(user);
+
+            if (emailAddressOrPhoneNumber.Contains("@"))
+            {
+                await _emailSender.SendEmailAsync(user.EmailAddress, "Password Reset Code", $"Your reset code is {token}");
+            }
+            else
+            {
+                await _smsSender.SendSmsAsync(user.PhoneNumber, $"Your reset code is {token}");
+            }
+        }
+
+        public async Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
+        {
+            var token = await _context.ResetPasswordTokens
+                .Include(t => t.User)
+                .FirstOrDefaultAsync(t => t.PasswordToken == resetPasswordDto.PasswordToken && t.ExpirationTime > DateTime.UtcNow);
+
+            if (token == null)
+            {
+                throw new ApplicationException("Incorrect verification code or expired token");
+            }
+
+            var user = token.User;
+            user.Password = BCrypt.Net.BCrypt.HashPassword(resetPasswordDto.NewPassword);
+
+            _context.ResetPasswordTokens.Remove(token);
             _context.Entry(user).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }

@@ -11,6 +11,14 @@ namespace network_server.DataAccess
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
+
+        /* ***
+         * 
+         * Unchecked
+         * 
+         * *** */
+        public DbSet<ResetPasswordToken> ResetPasswordTokens { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
