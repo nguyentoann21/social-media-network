@@ -18,9 +18,8 @@ namespace network_server.Services.s_user
         public async Task SendEmailAsync(string email, string subject, string message)
         {
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(
-                new MailboxAddress("Social-Media-Network-Arthur", _emailSettings.FromEmail));
-            emailMessage.To.Add(new MailboxAddress("", email));
+            emailMessage.From.Add(new MailboxAddress("SMN", _emailSettings.FromEmail));
+            emailMessage.To.Add(new MailboxAddress(email, email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart("plain") { Text = message };
             

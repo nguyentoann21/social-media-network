@@ -22,6 +22,29 @@ namespace network_server.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("network_server.Models.ResetPasswordToken", b =>
+                {
+                    b.Property<Guid>("TokenId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpirationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PasswordToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("TokenId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ResetPasswordTokens");
+                });
+
             modelBuilder.Entity("network_server.Models.Role", b =>
                 {
                     b.Property<Guid>("RoleId")
@@ -39,17 +62,17 @@ namespace network_server.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = new Guid("fffd31f0-371f-48ae-81db-0b592b90c93d"),
+                            RoleId = new Guid("ab59a9dc-f4cb-454b-bc14-039c6426a268"),
                             RoleName = "Manager"
                         },
                         new
                         {
-                            RoleId = new Guid("f02f5253-9dbb-45ba-b687-ae75458127d7"),
+                            RoleId = new Guid("42912b6a-fa8c-41e4-833c-2a2cc6cee876"),
                             RoleName = "Employee"
                         },
                         new
                         {
-                            RoleId = new Guid("a9a6ab13-2109-43f7-b479-21c7de5814ae"),
+                            RoleId = new Guid("61fafa04-093d-4557-8cb2-c6c40c2b0eb5"),
                             RoleName = "User"
                         });
                 });
@@ -116,6 +139,17 @@ namespace network_server.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("network_server.Models.ResetPasswordToken", b =>
+                {
+                    b.HasOne("network_server.Models.User", "User")
+                        .WithMany("ResetPasswordTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("network_server.Models.UserRole", b =>
                 {
                     b.HasOne("network_server.Models.Role", "Role")
@@ -142,6 +176,8 @@ namespace network_server.Migrations
 
             modelBuilder.Entity("network_server.Models.User", b =>
                 {
+                    b.Navigation("ResetPasswordTokens");
+
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

@@ -97,10 +97,6 @@ namespace network_server
 
             // Override password with environment variable if it exists
             var emailSettings = builder.Configuration.GetSection("EmailSettings").Get<EmailSettings>();
-            if (emailSettings != null)
-            {
-                emailSettings.Password = Environment.GetEnvironmentVariable("SMTP_PASSWORD") ?? emailSettings.Password;
-            }
 
             // Configure Twilio Settings from environment variables
             builder.Services.Configure<TwilioSettings>(options =>
