@@ -20,16 +20,17 @@ namespace network_server
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // Configure Swagger for API documentation
             builder.Services.AddEndpointsApiExplorer();
 
             /*** start coding ***/
 
-            //Swagger
+            // Configure Swagger with JWT Bearer Authentication
             builder.Services.AddSwaggerGen(swg =>
             {
                 swg.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
 
-                //JWT Bearer Authentication in Swagger
+                // Define the JWT Bearer Authentication scheme in Swagger
                 swg.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Bearer Authentication",
@@ -39,6 +40,7 @@ namespace network_server
                     Scheme = "Bearer"
                 });
 
+                // Apply the JWT Bearer Authentication scheme globally
                 swg.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -56,7 +58,7 @@ namespace network_server
             });
 
 
-            // Configure database context
+            // Configure Entity Framework Core with SQL Server
             builder.Services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -85,18 +87,21 @@ namespace network_server
                 options.AddPolicy("User", policy => policy.RequireRole("User"));
             });
 
-            // Add scoped services
+            // Register scoped and transient services
             builder.Services.AddScoped<IUserService, UserService>();
-
-
-            //Add transient services
             builder.Services.AddTransient<IEmailSender, EmailSender>();
             builder.Services.AddTransient<ISmsSender, SmsSender>();
 
-            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+            // Configure Email Settings from environment variables
+            builder.Services.Configure<EmailSettings>(options =>
+            {
+                options.FromEmail = Environment.GetEnvironmentVariable("E_FROMEMAIL") ?? string.Empty;
+                options.SmtpServer = Environment.GetEnvironmentVariable("E_SMTPSERVER") ?? string.Empty;
+                options.Port = Environment.GetEnvironmentVariable("E_PORT") ?? string.Empty;
+                options.Username = Environment.GetEnvironmentVariable("E_SMTP_USERNAME") ?? string.Empty;
+                options.Password = Environment.GetEnvironmentVariable("E_SMTP_PASSWORD") ?? string.Empty;
+            });
 
-            // Override password with environment variable if it exists
-            var emailSettings = builder.Configuration.GetSection("EmailSettings").Get<EmailSettings>();
 
             // Configure Twilio Settings from environment variables
             builder.Services.Configure<TwilioSettings>(options =>
@@ -120,20 +125,19 @@ namespace network_server
             app.UseHttpsRedirection();
 
             /* *** 
-             * Use static files to serve user-uploaded files
-             * Use a static file before using authentication and authorization 
-             * to make sure the static file has a higher priority 
-             * than using authen and author
+             * Serve static files (e.g., user-uploaded files) before authentication
+             * This ensures that static files are accessible without authentication 
+             * and authorization is enforced for other requests.
              * ***/
             app.UseStaticFiles();
 
-            // Use authentication and authorization
+            // Enable authentication and authorization middleware
             app.UseAuthentication();
             app.UseAuthorization();
 
-
+            // Map controllers to routes
             app.MapControllers();
-
+            // Run the application
             app.Run();
         }
     }

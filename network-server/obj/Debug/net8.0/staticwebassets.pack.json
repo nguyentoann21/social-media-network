@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "E:\\network\\network-server\\wwwroot\\avt\\02616fe8-166b-4417-9251-72859938c636_bentley.jpg",
+      "PackagePath": "staticwebassets\\avt\\02616fe8-166b-4417-9251-72859938c636_bentley.jpg"
+    },
+    {
       "Id": "E:\\network\\network-server\\wwwroot\\avt\\31674e54-0c0b-49d2-ab51-e2bd4274dfd3_bugatti-logo.jpg",
       "PackagePath": "staticwebassets\\avt\\31674e54-0c0b-49d2-ab51-e2bd4274dfd3_bugatti-logo.jpg"
     },

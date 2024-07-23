@@ -3,30 +3,6 @@
   "WorkspaceRootPath": "E:\\network\\network-server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\network\\network-server\\Migrations\\20240722110439_Init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20240722110439_Init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|e:\\network\\network-server\\models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|solutionrelative:models\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|e:\\network\\network-server\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|solutionrelative:models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|e:\\network\\network-server\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|e:\\network\\network-server\\models\\resetpasswordtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|solutionrelative:models\\resetpasswordtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\network\\network-server\\Migrations\\20240722105959_Init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20240722105959_Init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|e:\\network\\network-server\\services\\s_user\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16ABC4C2-9848-4214-9F65-0F6C85FA9A47}|network-server.csproj|solutionrelative:services\\s_user\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -43,92 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20240722110439_Init.cs",
-              "DocumentMoniker": "E:\\network\\network-server\\Migrations\\20240722110439_Init.cs",
-              "RelativeDocumentMoniker": "Migrations\\20240722110439_Init.cs",
-              "ToolTip": "E:\\network\\network-server\\Migrations\\20240722110439_Init.cs",
-              "RelativeToolTip": "Migrations\\20240722110439_Init.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T11:04:39.846Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserRole.cs",
-              "DocumentMoniker": "E:\\network\\network-server\\Models\\UserRole.cs",
-              "RelativeDocumentMoniker": "Models\\UserRole.cs",
-              "ToolTip": "E:\\network\\network-server\\Models\\UserRole.cs",
-              "RelativeToolTip": "Models\\UserRole.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T11:03:42.29Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Role.cs",
-              "DocumentMoniker": "E:\\network\\network-server\\Models\\Role.cs",
-              "RelativeDocumentMoniker": "Models\\Role.cs",
-              "ToolTip": "E:\\network\\network-server\\Models\\Role.cs",
-              "RelativeToolTip": "Models\\Role.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T11:03:40.421Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "E:\\network\\network-server\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Models\\User.cs",
-              "ToolTip": "E:\\network\\network-server\\Models\\User.cs",
-              "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAA1wAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T11:03:37.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ResetPasswordToken.cs",
-              "DocumentMoniker": "E:\\network\\network-server\\Models\\ResetPasswordToken.cs",
-              "RelativeDocumentMoniker": "Models\\ResetPasswordToken.cs",
-              "ToolTip": "E:\\network\\network-server\\Models\\ResetPasswordToken.cs",
-              "RelativeToolTip": "Models\\ResetPasswordToken.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAQwBIAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T11:03:23.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20240722105959_Init.cs",
-              "DocumentMoniker": "E:\\network\\network-server\\Migrations\\20240722105959_Init.cs",
-              "RelativeDocumentMoniker": "Migrations\\20240722105959_Init.cs",
-              "ToolTip": "E:\\network\\network-server\\Migrations\\20240722105959_Init.cs",
-              "RelativeToolTip": "Migrations\\20240722105959_Init.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T10:59:59.943Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "UserService.cs",
               "DocumentMoniker": "E:\\network\\network-server\\Services\\s_user\\UserService.cs",
               "RelativeDocumentMoniker": "Services\\s_user\\UserService.cs",
               "ToolTip": "E:\\network\\network-server\\Services\\s_user\\UserService.cs",
               "RelativeToolTip": "Services\\s_user\\UserService.cs",
-              "ViewState": "AQIAAEgBAAAAAAAAAAA2wFIBAAAAAAAA",
+              "ViewState": "AQIAAK0AAAAAAAAAAAAcwNIAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-22T10:56:28.66Z",
+              "WhenOpened": "2024-07-23T12:40:00.873Z",
               "EditorCaption": ""
             }
           ]

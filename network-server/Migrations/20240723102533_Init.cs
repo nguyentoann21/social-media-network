@@ -51,7 +51,7 @@ namespace network_server.Migrations
                 {
                     TokenId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PasswordToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordResetCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpirationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -94,9 +94,9 @@ namespace network_server.Migrations
                 columns: new[] { "RoleId", "RoleName" },
                 values: new object[,]
                 {
-                    { new Guid("42912b6a-fa8c-41e4-833c-2a2cc6cee876"), "Employee" },
-                    { new Guid("61fafa04-093d-4557-8cb2-c6c40c2b0eb5"), "User" },
-                    { new Guid("ab59a9dc-f4cb-454b-bc14-039c6426a268"), "Manager" }
+                    { new Guid("3df8f895-0c33-42dc-9b11-009733603a50"), "Manager" },
+                    { new Guid("5cc3ab3b-a1e7-4eda-83f5-176f5f046fd2"), "User" },
+                    { new Guid("5de49781-af30-48c4-bb31-cebf2da6d359"), "Employee" }
                 });
 
             migrationBuilder.CreateIndex(

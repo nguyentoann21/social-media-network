@@ -31,7 +31,7 @@ namespace network_server.Migrations
                     b.Property<DateTime>("ExpirationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PasswordToken")
+                    b.Property<string>("PasswordResetCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -62,17 +62,17 @@ namespace network_server.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = new Guid("ab59a9dc-f4cb-454b-bc14-039c6426a268"),
+                            RoleId = new Guid("3df8f895-0c33-42dc-9b11-009733603a50"),
                             RoleName = "Manager"
                         },
                         new
                         {
-                            RoleId = new Guid("42912b6a-fa8c-41e4-833c-2a2cc6cee876"),
+                            RoleId = new Guid("5de49781-af30-48c4-bb31-cebf2da6d359"),
                             RoleName = "Employee"
                         },
                         new
                         {
-                            RoleId = new Guid("61fafa04-093d-4557-8cb2-c6c40c2b0eb5"),
+                            RoleId = new Guid("5cc3ab3b-a1e7-4eda-83f5-176f5f046fd2"),
                             RoleName = "User"
                         });
                 });

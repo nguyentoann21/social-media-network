@@ -13,9 +13,9 @@ namespace network_server.Controllers
 
         /* ***
          * 
-         * Constructor
+         * Constructor to initialize IUserService
          * 
-         * ***/
+         *** */
         public UserController(IUserService userService)
         {
             _userService = userService;
@@ -23,11 +23,11 @@ namespace network_server.Controllers
 
         /* ***
          * 
-         * Registration with role User only using [FromForm] to use the static file
-         * Registration success, the system will return the user data
-         * Register failed, the system that will display the error based on reasonable casese
+         * Registration endpoint allowing users to register with the role "User"
+         * The data is submitted using [FromForm] to handle file uploads.
+         * On success, returns the user data. On failure, returns a BadRequest with an error message.
          * 
-         * ***/
+         *** */
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegisterDto registerDto)
         {
@@ -44,12 +44,12 @@ namespace network_server.Controllers
 
         /* ***
          * 
-         * Only Manager can take this action
-         * Create a user with a role added by the admin, only using [FromForm] to use the static file
-         * Create a user success, the system will return the user data
-         * Create a user failed, the system that will display the error based on reasonable casese
+         * Registration endpoint for admins to create users with specified roles
+         * Only accessible by users with the "Manager" role.
+         * The data is submitted using [FromForm] for handling file uploads.
+         * On success, returns the user data. On failure, returns a BadRequest with an error message.
          * 
-         * ***/
+         *** */
         [Authorize(Policy = "Manager")]
         [HttpPost("create-user")]
         public async Task<IActionResult> RegisterWithRole([FromForm] RegisterDto registerDto, [FromQuery] string roleName)
@@ -67,10 +67,10 @@ namespace network_server.Controllers
 
         /* ***
          * 
-         * Login success, the system will return a token
-         * Login failed, the system that will display the error based on reasonable casese
+         * Login endpoint that returns a JWT token on success
+         * On failure, returns an Unauthorized result with an error message.
          * 
-         * ***/
+         *** */
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
@@ -87,10 +87,11 @@ namespace network_server.Controllers
 
         /* ***
          * 
-         * Need to login first
-         * That action will return user-authorized data
+         * Endpoint to get the profile of the currently logged-in user
+         * Requires authentication. Returns user data if successful.
+         * On failure, returns an Unauthorized result with an error message.
          * 
-         * ***/
+         *** */
         [Authorize]
         [HttpGet("user-profile")]
         public async Task<IActionResult> GetProfile()
@@ -116,12 +117,11 @@ namespace network_server.Controllers
 
         /* ***
          * 
-         * Need to login first
-         * That action allows users to edit their profiles.
-         * Edit success, the system will return the text. It is "Your profile has been changed"
-         * Edit failed, the system that will display the error based on reasonable casese
+         * Endpoint to edit the profile of the currently logged-in user
+         * Requires authentication. On success, returns a success message.
+         * On failure, returns an Unauthorized result with an error message.
          * 
-         * ***/
+         *** */
         [Authorize]
         [HttpPut("edit-profile")]
         public async Task<IActionResult> EditProfile([FromForm] UpdateProfileDto updateProfile)
@@ -147,12 +147,11 @@ namespace network_server.Controllers
 
         /* ***
          * 
-         * Need to login first
-         * That action allows users to edit their passwords.
-         * Edit success, the system will return the text. It is "Your profile has been changed".
-         * Edit failed, the system that will display the error based on reasonable casese.
+         * Endpoint to change the password of the currently logged-in user
+         * Requires authentication. On success, returns a success message.
+         * On failure, returns an Unauthorized result with an error message.
          * 
-         * ***/
+         *** */
         [Authorize]
         [HttpPut("edit-password")]
         public async Task<IActionResult> EditPassword([FromBody] UpdatePasswordDto updatePassword)
@@ -175,13 +174,14 @@ namespace network_server.Controllers
                 return Unauthorized(ex.Message);
             }
         }
-
-
         /* ***
          * 
-         * Unchecked
+         * Endpoint to request a password reset code
+         * Takes an email address or phone number to send the reset code.
+         * On success, returns a message indicating the reset code has been sent.
+         * On failure, returns a BadRequest with an error message.
          * 
-         * *** */
+         *** */
         [HttpPost("request-password-reset")]
         public async Task<IActionResult> RequestPasswordReset([FromBody] string emailAddressOrPhoneNumber)
         {
@@ -195,13 +195,14 @@ namespace network_server.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-
         /* ***
          * 
-         * Unchecked
+         * Endpoint to reset the password using a reset code
+         * Takes a ResetPasswordDto to perform the reset.
+         * On success, returns a success message.
+         * On failure, returns a BadRequest with an error message.
          * 
-         * *** */
+         *** */
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
         {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jU9HkUI/kgdOfAszZevCPVJzLwX1gXTMUyXGHHVqrPY=",
+  "Hash": "W53PfHcsrz/DKxuAi5WB9M3TCIVI0C3UMlzsgdLNqog=",
   "Source": "network-server",
   "BasePath": "_content/network-server",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "E:\\network\\network-server\\wwwroot\\avt\\02616fe8-166b-4417-9251-72859938c636_bentley.jpg",
+      "SourceId": "network-server",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\network\\network-server\\wwwroot\\",
+      "BasePath": "_content/network-server",
+      "RelativePath": "avt/02616fe8-166b-4417-9251-72859938c636_bentley.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\avt\\02616fe8-166b-4417-9251-72859938c636_bentley.jpg"
+    },
     {
       "Identity": "E:\\network\\network-server\\wwwroot\\avt\\31674e54-0c0b-49d2-ab51-e2bd4274dfd3_bugatti-logo.jpg",
       "SourceId": "network-server",
