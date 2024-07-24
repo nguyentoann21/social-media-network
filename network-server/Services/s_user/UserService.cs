@@ -14,7 +14,6 @@ namespace network_server.Services.s_user
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly IEmailSender _emailSender;
-        private readonly ISmsSender _smsSender;
 
         /* ***
          * Constructor to initialize the UserService with dependencies.
@@ -26,12 +25,11 @@ namespace network_server.Services.s_user
          * - smsSender: Service for sending SMS messages.
          * 
          *** */
-        public UserService(ApplicationDbContext context, IConfiguration configuration, IEmailSender emailSender, ISmsSender smsSender)
+        public UserService(ApplicationDbContext context, IConfiguration configuration, IEmailSender emailSender)
         {
             _context = context;
             _configuration = configuration;
             _emailSender = emailSender;
-            _smsSender = smsSender;
         }
 
         /* ***
@@ -448,19 +446,19 @@ namespace network_server.Services.s_user
          * Requests a password reset by sending a reset code via email or SMS.
          * 
          * Parameters:
-         * - emailAddressOrPhoneNumber: The email address or phone number to send the reset code to.
+         * - emailAddress: The email address to send the reset code to.
          * 
          * Throws:
-         * - ApplicationException if the email address or phone number is not found.
+         * - ApplicationException if the email address is not found.
          * 
          *** */
-        public async Task RequestResetPasswordAsync(string emailAddressOrPhoneNumber)
+        public async Task RequestResetPasswordAsync(string emailAddress)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == emailAddressOrPhoneNumber || u.PhoneNumber == emailAddressOrPhoneNumber);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.EmailAddress == emailAddress);
 
             if (user == null)
             {
-                throw new ApplicationException("Email address or phone number not found");
+                throw new ApplicationException("Email address not found");
             }
 
             var authCode = await GenerateResetPasswordTokenAsync(user);
@@ -471,16 +469,9 @@ namespace network_server.Services.s_user
             var noted = "Please pay attention to the usage time to avoid code expiration.";
             var system_msg = "Thank you for using our service.";
 
-            var sms_msg_code = $"Your reset code is {authCode}.";
-            var sms_expired = "The code will expire after 5 minutes.";
-
-            if (emailAddressOrPhoneNumber.Contains("@"))
+            if (emailAddress.Contains("@"))
             {
                 await _emailSender.SendEmailAsync(user.EmailAddress, subject, $"<div>{msg_code}<br/><hr/><h3>{expired}<br/>{noted}<br/>{system_msg}</h3></div>");
-            }
-            else
-            {
-                await _smsSender.SendSmsAsync(user.PhoneNumber, $"{sms_msg_code}\n{sms_expired}\n{noted}\n{system_msg}");
             }
         }
         /* ***

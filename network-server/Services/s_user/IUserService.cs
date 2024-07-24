@@ -98,21 +98,21 @@ namespace network_server.Services.s_user
          *** */
         Task UpdatePasswordAsync(Guid userId, UpdatePasswordDto updatePassword);
         /* ***
-         * Requests a password reset for a user based on email or phone number.
+         * Requests a password reset for a user based on email.
          * 
          * Parameters:
-         * - emailAddressOrPhoneNumber: The email address or phone number of the user requesting a password reset.
+         * - emailAddress: The email address of the user requesting a password reset.
          * 
          * Returns:
          * - A Task representing the asynchronous operation.
          * 
          *** */
-        Task RequestResetPasswordAsync(string emailAddressOrPhoneNumber);
+        Task RequestResetPasswordAsync(string emailAddress);
         /* ***
          * Resets the password for a user based on a reset token and new password.
          * 
          * Parameters:
-         * - resetPasswordDto: Contains the email/phone number, reset token, and new password.
+         * - resetPasswordDto: Contains the email address, reset token, and new password.
          * 
          * Returns:
          * - A Task representing the asynchronous operation.

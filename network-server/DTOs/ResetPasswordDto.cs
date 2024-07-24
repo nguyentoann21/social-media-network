@@ -10,7 +10,7 @@
          * NewPassword: The new password to be set for the user's account.
          * 
          *** */
-        public string EmailAddressOrPhoneNumber { get; set; } = string.Empty;
+        public string EmailAddress { get; set; } = string.Empty;
         public string PasswordToken { get; set; } = string.Empty;
         public string NewPassword { get; set; } = string.Empty;
     }

@@ -90,7 +90,6 @@ namespace network_server
             // Register scoped and transient services
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddTransient<IEmailSender, EmailSender>();
-            builder.Services.AddTransient<ISmsSender, SmsSender>();
 
             // Configure Email Settings from environment variables
             builder.Services.Configure<EmailSettings>(options =>
@@ -100,15 +99,6 @@ namespace network_server
                 options.Port = Environment.GetEnvironmentVariable("E_PORT") ?? string.Empty;
                 options.Username = Environment.GetEnvironmentVariable("E_SMTP_USERNAME") ?? string.Empty;
                 options.Password = Environment.GetEnvironmentVariable("E_SMTP_PASSWORD") ?? string.Empty;
-            });
-
-
-            // Configure Twilio Settings from environment variables
-            builder.Services.Configure<TwilioSettings>(options =>
-            {
-                options.AccountSid = Environment.GetEnvironmentVariable("ACCOUNTSID") ?? string.Empty;
-                options.AuthToken = Environment.GetEnvironmentVariable("AUTHTOKEN") ?? string.Empty;
-                options.FromNumber = Environment.GetEnvironmentVariable("FROMNUMBER") ?? string.Empty;
             });
 
             /*** end coding ***/

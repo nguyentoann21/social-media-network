@@ -177,18 +177,18 @@ namespace network_server.Controllers
         /* ***
          * 
          * Endpoint to request a password reset code
-         * Takes an email address or phone number to send the reset code.
+         * Takes an email address to send the reset code.
          * On success, returns a message indicating the reset code has been sent.
          * On failure, returns a BadRequest with an error message.
          * 
          *** */
         [HttpPost("request-password-reset")]
-        public async Task<IActionResult> RequestPasswordReset([FromBody] string emailAddressOrPhoneNumber)
+        public async Task<IActionResult> RequestPasswordReset([FromBody] string emailAddress)
         {
             try
             {
-                await _userService.RequestResetPasswordAsync(emailAddressOrPhoneNumber);
-                return Ok("A reset code has been sent to your email address or phone number");
+                await _userService.RequestResetPasswordAsync(emailAddress);
+                return Ok("A reset code has been sent to your email address");
             }
             catch (ApplicationException ex)
             {
